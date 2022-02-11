@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face{
+    font-family: 'ambleregular';
+    src: url('amble-regular-webfont.woff2') format('woff2'),
+         url('amble-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font-family: 'ambleregular', Arial, Helvetica, sans-serif;
+    margin: 20px auto;
+    background-color: #ccc;
+}
+h1{
+    text-align: center;
+    margin: 50px 0;
+    font-size: 50px;
+    text-shadow: 1px 1px .5px white;
+}
+.container{
+    width: 600px;
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.gallery li{
+    width: 80px;
+    height: 80px;
+    border: 3px solid #666;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    margin: 0 17.5px;
+}
+.gallery li,
+/* .gallery li img,  */
+.gallery li span{
+    border-radius: 50%;
+}
+.gallery li span{
+    display: block;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(200, 200, 200, 0.4);
+    position: absolute;
+    top: 0%;
+    text-align: center;
+    line-height: 80px;
+    color: black;
+    text-shadow: 1px 1px 1px #ddd;
+    opacity: 0;
+    transition: .3s;
+    transform: scale(0) rotate(0);
+}
+
+.gallery li a:hover span{
+    opacity: 1;
+    transform: scale(1) rotate(-360deg);
+}
+
+.clear{
+    clear: both;
+}
+/* Mentarget Gambar */
+
+.overlay{
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    text-align: center;
+    padding: 70px 0;
+    transition: .8s;
+}
+.overlay:target{
+    width: auto;
+    height: auto;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.overlay img{
+    height: 100%;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+}
+.overlay:target img{
+    animation: zoomDanFade 0.3s;
+}
+/* tombol close */
+.overlay .close{
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -25px;
+    color: white;
+    border: solid 1px white;
+    text-decoration: none;
+    padding: 2px;
+    opacity: 0;
+}
+.overlay:target .close{
+    animation: close .5s .5s forwards;
+}
+/* Animasi */
+@keyframes zoomDanFade{ 
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+@keyframes close {
+    0%{
+        opacity: 0;
+        margin-top: -30px;
+    }
+    100%{
+        opacity: 1;
+        margin-top: 0;
+    }
+    
+}
+
